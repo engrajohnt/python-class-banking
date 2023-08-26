@@ -45,9 +45,10 @@ def login_as_customer(customer):
     else:
         print("Invalid email or PIN.")
 
-def login_as_agent(agent):
-    email = input("Enter email: ")
-    pin = input("Enter PIN: ")
+def login_as_agent(agent, email=None, pin=None):
+    if not email and not pin:
+        email = input("Enter email: ")
+        pin = input("Enter PIN: ")
 
     if agent.login(email, pin):
         while True:
@@ -92,7 +93,7 @@ def main():
             if customer:
                 login_as_customer(customer)
             elif agent:
-                login_as_agent(agent)
+                login_as_agent(agent, email, pin)
             else:
                 print("Invalid email or account not found.")
 
