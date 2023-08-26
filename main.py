@@ -88,14 +88,13 @@ def main():
             pin = input("Enter PIN: ")
 
             customer = db.find_customer_by_email(email)
+            agent = db.find_agent_by_email(email)
             if customer:
                 login_as_customer(customer)
+            elif agent:
+                login_as_agent(agent)
             else:
-                agent = db.find_agent_by_email(email)
-                if agent:
-                    login_as_agent(agent)
-                else:
-                    print("Invalid email or account not found.")
+                print("Invalid email or account not found.")
 
         elif choice == 4:
             print("Goodbye! Contact EngrJohnTegabankingservice.org for more info.\n")
